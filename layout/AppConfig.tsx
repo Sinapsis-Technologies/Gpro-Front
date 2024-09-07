@@ -27,6 +27,9 @@ const AppConfig = (props: AppConfigProps) => {
     ];
 
     useEffect(() => {
+        changeTheme?.(layoutConfig.theme, "orange", "theme-link", () => {
+            setLayoutConfig((prevState) => ({ ...prevState, theme: "orange" }));
+        });
         if (isSlim() || isSlimPlus() || isHorizontal()) {
             setLayoutState((prevState) => ({ ...prevState, resetMenu: true }));
         }
@@ -122,7 +125,7 @@ const AppConfig = (props: AppConfigProps) => {
                 position="right"
                 className="layout-config-sidebar w-18rem"
             >
-                <h5>Themes</h5>
+                <h5>Temas</h5>
                 <div className="flex flex-wrap row-gap-3">
                     {componentThemes.map((theme, i) => {
                         return (
@@ -142,7 +145,7 @@ const AppConfig = (props: AppConfigProps) => {
                     })}
                 </div>
 
-                <h5>Scale</h5>
+                <h5>Escala / Tamaño</h5>
                 <div className="flex align-items-center">
                     <Button
                         icon="pi pi-minus"
@@ -184,7 +187,7 @@ const AppConfig = (props: AppConfigProps) => {
 
                 {!props.minimal && (
                     <>
-                        <h5>Menu Type</h5>
+                        <h5>Tipo Del Menu</h5>
                         <div className="flex flex-wrap row-gap-3">
                             <div className="flex align-items-center gap-2 w-6">
                                 <RadioButton
