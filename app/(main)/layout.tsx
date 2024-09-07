@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     viewport: { initialScale: 1, width: "device-width" },
     openGraph: {
         type: "website",
-        title: "PrimeReact APOLLO-REACT",
+        title: "G-PRO Ucompensar",
         url: "https://ucompensar.edu.co/",
         description:
             "Not Desciption",
