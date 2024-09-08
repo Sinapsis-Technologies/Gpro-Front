@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 type CardInformationProps = {
     title: string;
@@ -7,39 +7,37 @@ type CardInformationProps = {
     subdata?: string;
 }
 
-const CardInformation = ( {title, data, subdata, type} : CardInformationProps) => {
+const CardInformation = ({ title, data, subdata, type } : CardInformationProps) => {
+  function createRandomPathD (): string {
+    const width = 115 // Ancho del SVG
+    const height = 41 // Alto del SVG
+    const amplitude = 15 // Amplitud de las ondas
+    const frequency = 0.1 // Frecuencia de las ondas
 
-    function createRandomPathD(): string {
-        const width = 115;  // Ancho del SVG
-        const height = 41;  // Alto del SVG
-        const amplitude = 15;  // Amplitud de las ondas
-        const frequency = 0.1;  // Frecuencia de las ondas
-        const numPoints = 100;  // Número de puntos para suavizar la onda
+    // Crea un array para almacenar los puntos del path
+    const path = []
 
-        // Crea un array para almacenar los puntos del path
-        const path = [];
+    // Itera a través de los puntos a lo largo del ancho del SVG
+    for (let x = 0; x <= width; x++) {
+      // Calcula la posición y usando una función seno para crear una onda
+      const y = height / 2 + amplitude * Math.sin(frequency * x)
 
-        // Itera a través de los puntos a lo largo del ancho del SVG
-        for (let x = 0; x <= width; x++) {
-            // Calcula la posición y usando una función seno para crear una onda
-            const y = height / 2 + amplitude * Math.sin(frequency * x);
-
-            // Agrega el punto al path
-            if (x === 0) {
-                path.push(`M${x} ${y}`);
-            } else {
-                path.push(`L${x} ${y}`);
-            }
-        }
-
-        // Asegúrate de cerrar el path si es necesario
-        path.push(`L${width} ${height}`);
-        path.push(`L0 ${height}`);
-        path.push('Z');  // Cierra el path
-
-        // Convierte el array de comandos en una cadena
-        return path.join(' ');
+      // Agrega el punto al path
+      if (x === 0) {
+        path.push(`M${x} ${y}`)
+      } else {
+        path.push(`L${x} ${y}`)
+      }
     }
+
+    // Asegúrate de cerrar el path si es necesario
+    path.push(`L${width} ${height}`)
+    path.push(`L0 ${height}`)
+    path.push("Z") // Cierra el path
+
+    // Convierte el array de comandos en una cadena
+    return path.join(" ")
+  }
 
   return (
         <div className="card h-full">
@@ -69,8 +67,8 @@ const CardInformation = ( {title, data, subdata, type} : CardInformationProps) =
                         <path
                             d={createRandomPathD()}
                             style={{
-                                strokeWidth: "1px",
-                                stroke: "var(--primary-color)",
+                              strokeWidth: "1px",
+                              stroke: "var(--primary-color)"
                             }}
                         />
                     </svg>

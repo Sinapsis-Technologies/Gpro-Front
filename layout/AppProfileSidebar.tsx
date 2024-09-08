@@ -1,19 +1,18 @@
-import { Badge } from "primereact/badge";
-import { Sidebar } from "primereact/sidebar";
-import { useContext } from "react";
-import { LayoutContext } from "./context/layoutcontext";
+import { Sidebar } from "primereact/sidebar"
+import { useContext } from "react"
+import { LayoutContext } from "./context/layoutcontext"
 
 const AppProfileSidebar = () => {
-    const { layoutState, setLayoutState } = useContext(LayoutContext);
+  const { layoutState, setLayoutState } = useContext(LayoutContext)
 
-    const onProfileSidebarHide = () => {
-        setLayoutState((prevState) => ({
-            ...prevState,
-            profileSidebarVisible: false,
-        }));
-    };
+  const onProfileSidebarHide = () => {
+    setLayoutState((prevState) => ({
+      ...prevState,
+      profileSidebarVisible: false
+    }))
+  }
 
-    return (
+  return (
         <Sidebar
             visible={layoutState.profileSidebarVisible}
             onHide={onProfileSidebarHide}
@@ -27,7 +26,7 @@ const AppProfileSidebar = () => {
                 </span>
             </div>
         </Sidebar>
-    );
-};
+  )
+}
 
-export default AppProfileSidebar;
+export default AppProfileSidebar

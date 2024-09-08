@@ -1,24 +1,24 @@
-import type { AppTopbarRef } from "@/types";
-import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import { forwardRef, useContext, useImperativeHandle, useRef } from "react";
-import AppBreadcrumb from "./AppBreadCrumb";
-import { LayoutContext } from "./context/layoutcontext";
+import type { AppTopbarRef } from "@/types"
+import { Button } from "primereact/button"
+import { InputText } from "primereact/inputtext"
+import { forwardRef, useContext, useImperativeHandle, useRef } from "react"
+import AppBreadcrumb from "./AppBreadCrumb"
+import { LayoutContext } from "./context/layoutcontext"
 
 const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
-    const { onMenuToggle, showProfileSidebar, showConfigSidebar } =
-        useContext(LayoutContext);
-    const menubuttonRef = useRef(null);
+  const { onMenuToggle, showProfileSidebar, showConfigSidebar } =
+        useContext(LayoutContext)
+  const menubuttonRef = useRef(null)
 
-    const onConfigButtonClick = () => {
-        showConfigSidebar();
-    };
+  const onConfigButtonClick = () => {
+    showConfigSidebar()
+  }
 
-    useImperativeHandle(ref, () => ({
-        menubutton: menubuttonRef.current,
-    }));
+  useImperativeHandle(ref, () => ({
+    menubutton: menubuttonRef.current
+  }))
 
-    return (
+  return (
         <div className="layout-topbar">
             <div className="topbar-start">
                 <button
@@ -71,9 +71,9 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
                 </ul>
             </div>
         </div>
-    );
-});
+  )
+})
 
-AppTopbar.displayName = "AppTopbar";
+AppTopbar.displayName = "AppTopbar"
 
-export default AppTopbar;
+export default AppTopbar

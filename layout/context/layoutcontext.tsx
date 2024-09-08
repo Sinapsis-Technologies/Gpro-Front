@@ -1,114 +1,114 @@
-"use client";
+"use client"
 import type {
-    Breadcrumb,
-    ChildContainerProps,
-    LayoutConfig,
-    LayoutContextProps,
-    LayoutState,
-} from "@/types";
-import Head from "next/head";
-import React, { useState } from "react";
+  Breadcrumb,
+  ChildContainerProps,
+  LayoutConfig,
+  LayoutContextProps,
+  LayoutState
+} from "@/types"
+import Head from "next/head"
+import React, { useState } from "react"
 
-export const LayoutContext = React.createContext({} as LayoutContextProps);
+export const LayoutContext = React.createContext({} as LayoutContextProps)
 
 export const LayoutProvider = (props: ChildContainerProps) => {
-    const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>([]);
-    const [layoutConfig, setLayoutConfig] = useState<LayoutConfig>({
-        ripple: false,
-        inputStyle: "outlined",
-        menuMode: "static",
-        menuTheme: "colorScheme",
-        colorScheme: "light",
-        theme: "indigo",
-        scale: 14,
-    });
+  const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>([])
+  const [layoutConfig, setLayoutConfig] = useState<LayoutConfig>({
+    ripple: false,
+    inputStyle: "outlined",
+    menuMode: "static",
+    menuTheme: "colorScheme",
+    colorScheme: "light",
+    theme: "indigo",
+    scale: 14
+  })
 
-    const [layoutState, setLayoutState] = useState<LayoutState>({
-        staticMenuDesktopInactive: false,
-        overlayMenuActive: false,
-        overlaySubmenuActive: false,
-        profileSidebarVisible: false,
-        configSidebarVisible: false,
-        staticMenuMobileActive: false,
-        menuHoverActive: false,
-        resetMenu: false,
-        sidebarActive: false,
-        anchored: false,
-    });
+  const [layoutState, setLayoutState] = useState<LayoutState>({
+    staticMenuDesktopInactive: false,
+    overlayMenuActive: false,
+    overlaySubmenuActive: false,
+    profileSidebarVisible: false,
+    configSidebarVisible: false,
+    staticMenuMobileActive: false,
+    menuHoverActive: false,
+    resetMenu: false,
+    sidebarActive: false,
+    anchored: false
+  })
 
-    const onMenuToggle = () => {
-        if (isOverlay()) {
-            setLayoutState((prevLayoutState) => ({
-                ...prevLayoutState,
-                overlayMenuActive: !prevLayoutState.overlayMenuActive,
-            }));
-        }
+  const onMenuToggle = () => {
+    if (isOverlay()) {
+      setLayoutState((prevLayoutState) => ({
+        ...prevLayoutState,
+        overlayMenuActive: !prevLayoutState.overlayMenuActive
+      }))
+    }
 
-        if (isDesktop()) {
-            setLayoutState((prevLayoutState) => ({
-                ...prevLayoutState,
-                staticMenuDesktopInactive:
-                    !prevLayoutState.staticMenuDesktopInactive,
-            }));
-        } else {
-            setLayoutState((prevLayoutState) => ({
-                ...prevLayoutState,
-                staticMenuMobileActive: !prevLayoutState.staticMenuMobileActive,
-            }));
-        }
-    };
+    if (isDesktop()) {
+      setLayoutState((prevLayoutState) => ({
+        ...prevLayoutState,
+        staticMenuDesktopInactive:
+                    !prevLayoutState.staticMenuDesktopInactive
+      }))
+    } else {
+      setLayoutState((prevLayoutState) => ({
+        ...prevLayoutState,
+        staticMenuMobileActive: !prevLayoutState.staticMenuMobileActive
+      }))
+    }
+  }
 
-    const showConfigSidebar = () => {
-        setLayoutState((prevLayoutState) => ({
-            ...prevLayoutState,
-            configSidebarVisible: true,
-        }));
-    };
+  const showConfigSidebar = () => {
+    setLayoutState((prevLayoutState) => ({
+      ...prevLayoutState,
+      configSidebarVisible: true
+    }))
+  }
 
-    const showProfileSidebar = () => {
-        setLayoutState((prevLayoutState) => ({
-            ...prevLayoutState,
-            profileSidebarVisible: !prevLayoutState.profileSidebarVisible,
-        }));
-    };
+  const showProfileSidebar = () => {
+    setLayoutState((prevLayoutState) => ({
+      ...prevLayoutState,
+      profileSidebarVisible: !prevLayoutState.profileSidebarVisible
+    }))
+  }
 
-    const isOverlay = () => {
-        return layoutConfig.menuMode === "overlay";
-    };
+  const isOverlay = () => {
+    return layoutConfig.menuMode === "overlay"
+  }
 
-    const isSlim = () => {
-        return layoutConfig.menuMode === "slim";
-    };
+  const isSlim = () => {
+    return layoutConfig.menuMode === "slim"
+  }
 
-    const isSlimPlus = () => {
-        return layoutConfig.menuMode === "slim-plus";
-    };
+  const isSlimPlus = () => {
+    return layoutConfig.menuMode === "slim-plus"
+  }
 
-    const isHorizontal = () => {
-        return layoutConfig.menuMode === "horizontal";
-    };
+  const isHorizontal = () => {
+    return layoutConfig.menuMode === "horizontal"
+  }
 
-    const isDesktop = () => {
-        return window.innerWidth > 991;
-    };
+  const isDesktop = () => {
+    return window.innerWidth > 991
+  }
 
-    const value = {
-        layoutConfig,
-        setLayoutConfig,
-        layoutState,
-        setLayoutState,
-        onMenuToggle,
-        showConfigSidebar,
-        showProfileSidebar,
-        isSlim,
-        isSlimPlus,
-        isHorizontal,
-        isDesktop,
-        breadcrumbs,
-        setBreadcrumbs,
-    };
+  const value = {
+    layoutConfig,
+    setLayoutConfig,
+    layoutState,
+    setLayoutState,
+    onMenuToggle,
+    showConfigSidebar,
+    showProfileSidebar,
+    isSlim,
+    isSlimPlus,
+    isHorizontal,
+    isDesktop,
+    breadcrumbs,
+    setBreadcrumbs
+  }
 
-    return (
+  return (
         <LayoutContext.Provider value={value}>
             <>
                 <Head>
@@ -143,12 +143,12 @@ export const LayoutProvider = (props: ChildContainerProps) => {
                     <meta property="og:ttl" content="604800"></meta>
                     <link
                         rel="icon"
-                        href={`/favicon.ico`}
+                        href={"/favicon.ico"}
                         type="image/x-icon"
                     ></link>
                 </Head>
                 {props.children}
             </>
         </LayoutContext.Provider>
-    );
-};
+  )
+}

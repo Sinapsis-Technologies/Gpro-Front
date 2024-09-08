@@ -1,7 +1,7 @@
-import CardInformation from "@/shared/small-components/card-information";
+import CardInformation from "@/shared/small-components/card-information/card-information"
 
-export default function Home() {
-    return (
+export default function Home () {
+  return (
         <div className="grid">
             <div className="col-12 md:col-6 xl:col-3">
                 <CardInformation title="Bancos" data="23" />
@@ -22,5 +22,5 @@ export default function Home() {
                 <CardInformation title="Equipos" data="2" />
             </div>
         </div>
-    );
+  )
 }

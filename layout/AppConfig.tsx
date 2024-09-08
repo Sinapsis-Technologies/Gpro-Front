@@ -1,115 +1,115 @@
-"use client";
-import type { AppConfigProps, ColorScheme } from "@/types";
-import { PrimeReactContext } from "primereact/api";
-import { Button } from "primereact/button";
-import { InputSwitch, InputSwitchChangeEvent } from "primereact/inputswitch";
-import { RadioButton, RadioButtonChangeEvent } from "primereact/radiobutton";
-import { Sidebar } from "primereact/sidebar";
-import { classNames } from "primereact/utils";
-import { useContext, useEffect } from "react";
-import { LayoutContext } from "./context/layoutcontext";
+"use client"
+import type { AppConfigProps, ColorScheme } from "@/types"
+import { PrimeReactContext } from "primereact/api"
+import { Button } from "primereact/button"
+import { InputSwitch, InputSwitchChangeEvent } from "primereact/inputswitch"
+import { RadioButton, RadioButtonChangeEvent } from "primereact/radiobutton"
+import { Sidebar } from "primereact/sidebar"
+import { classNames } from "primereact/utils"
+import { useContext, useEffect } from "react"
+import { LayoutContext } from "./context/layoutcontext"
 
 const AppConfig = (props: AppConfigProps) => {
-    const {
-        layoutConfig,
-        setLayoutConfig,
-        layoutState,
-        setLayoutState,
-        isSlim,
-        isSlimPlus,
-        isHorizontal,
-    } = useContext(LayoutContext);
-    const { changeTheme } = useContext(PrimeReactContext);
-    const scales = [12, 13, 14, 15, 16];
-    const componentThemes = [
-        { name: "orange", color: "#FF6600" },
-        { name: "indigo", color: "#6366F1" },
-    ];
+  const {
+    layoutConfig,
+    setLayoutConfig,
+    layoutState,
+    setLayoutState,
+    isSlim,
+    isSlimPlus,
+    isHorizontal
+  } = useContext(LayoutContext)
+  const { changeTheme } = useContext(PrimeReactContext)
+  const scales = [12, 13, 14, 15, 16]
+  const componentThemes = [
+    { name: "orange", color: "#FF6600" },
+    { name: "indigo", color: "#6366F1" }
+  ]
 
-    useEffect(() => {
-        changeTheme?.(layoutConfig.theme, "orange", "theme-link", () => {
-            setLayoutConfig((prevState) => ({ ...prevState, theme: "orange" }));
-        });
-        if (isSlim() || isSlimPlus() || isHorizontal()) {
-            setLayoutState((prevState) => ({ ...prevState, resetMenu: true }));
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [layoutConfig.menuMode]);
+  useEffect(() => {
+    changeTheme?.(layoutConfig.theme, "orange", "theme-link", () => {
+      setLayoutConfig((prevState) => ({ ...prevState, theme: "orange" }))
+    })
+    if (isSlim() || isSlimPlus() || isHorizontal()) {
+      setLayoutState((prevState) => ({ ...prevState, resetMenu: true }))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [layoutConfig.menuMode])
 
-    const onConfigButtonClick = () => {
-        setLayoutState((prevState) => ({
-            ...prevState,
-            configSidebarVisible: true,
-        }));
-    };
+  const onConfigButtonClick = () => {
+    setLayoutState((prevState) => ({
+      ...prevState,
+      configSidebarVisible: true
+    }))
+  }
 
-    const onConfigSidebarHide = () => {
-        setLayoutState((prevState) => ({
-            ...prevState,
-            configSidebarVisible: false,
-        }));
-    };
+  const onConfigSidebarHide = () => {
+    setLayoutState((prevState) => ({
+      ...prevState,
+      configSidebarVisible: false
+    }))
+  }
 
-    const changeInputStyle = (e: RadioButtonChangeEvent) => {
-        setLayoutConfig((prevState) => ({ ...prevState, inputStyle: e.value }));
-    };
+  const changeInputStyle = (e: RadioButtonChangeEvent) => {
+    setLayoutConfig((prevState) => ({ ...prevState, inputStyle: e.value }))
+  }
 
-    const changeRipple = (e: InputSwitchChangeEvent) => {
-        setLayoutConfig((prevState) => ({
-            ...prevState,
-            ripple: e.value as boolean,
-        }));
-    };
+  const changeRipple = (e: InputSwitchChangeEvent) => {
+    setLayoutConfig((prevState) => ({
+      ...prevState,
+      ripple: e.value as boolean
+    }))
+  }
 
-    const changeMenuMode = (e: RadioButtonChangeEvent) => {
-        setLayoutConfig((prevState) => ({ ...prevState, menuMode: e.value }));
-    };
+  const changeMenuMode = (e: RadioButtonChangeEvent) => {
+    setLayoutConfig((prevState) => ({ ...prevState, menuMode: e.value }))
+  }
 
-    const changeMenuTheme = (e: RadioButtonChangeEvent) => {
-        setLayoutConfig((prevState) => ({ ...prevState, menuTheme: e.value }));
-    };
+  const changeMenuTheme = (e: RadioButtonChangeEvent) => {
+    setLayoutConfig((prevState) => ({ ...prevState, menuTheme: e.value }))
+  }
 
-    const changeColorScheme = (colorScheme: ColorScheme) => {
-        changeTheme?.(
-            layoutConfig.colorScheme,
-            colorScheme,
-            "theme-link",
-            () => {
-                setLayoutConfig((prevState) => ({ ...prevState, colorScheme }));
-            }
-        );
-    };
+  const changeColorScheme = (colorScheme: ColorScheme) => {
+    changeTheme?.(
+      layoutConfig.colorScheme,
+      colorScheme,
+      "theme-link",
+      () => {
+        setLayoutConfig((prevState) => ({ ...prevState, colorScheme }))
+      }
+    )
+  }
 
-    const _changeTheme = (theme: string) => {
-        changeTheme?.(layoutConfig.theme, theme, "theme-link", () => {
-            setLayoutConfig((prevState) => ({ ...prevState, theme }));
-        });
-    };
+  const _changeTheme = (theme: string) => {
+    changeTheme?.(layoutConfig.theme, theme, "theme-link", () => {
+      setLayoutConfig((prevState) => ({ ...prevState, theme }))
+    })
+  }
 
-    const decrementScale = () => {
-        setLayoutConfig((prevState) => ({
-            ...prevState,
-            scale: prevState.scale - 1,
-        }));
-    };
+  const decrementScale = () => {
+    setLayoutConfig((prevState) => ({
+      ...prevState,
+      scale: prevState.scale - 1
+    }))
+  }
 
-    const incrementScale = () => {
-        setLayoutConfig((prevState) => ({
-            ...prevState,
-            scale: prevState.scale + 1,
-        }));
-    };
+  const incrementScale = () => {
+    setLayoutConfig((prevState) => ({
+      ...prevState,
+      scale: prevState.scale + 1
+    }))
+  }
 
-    const applyScale = () => {
-        document.documentElement.style.fontSize = layoutConfig.scale + "px";
-    };
+  const applyScale = () => {
+    document.documentElement.style.fontSize = layoutConfig.scale + "px"
+  }
 
-    useEffect(() => {
-        applyScale();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [layoutConfig.scale]);
+  useEffect(() => {
+    applyScale()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [layoutConfig.scale])
 
-    return (
+  return (
         <>
             <button
                 className="layout-config-button config-link"
@@ -128,20 +128,22 @@ const AppConfig = (props: AppConfigProps) => {
                 <h5>Temas</h5>
                 <div className="flex flex-wrap row-gap-3">
                     {componentThemes.map((theme, i) => {
-                        return (
+                      return (
                             <div key={i} className="w-3">
                                 <button
                                     type="button"
-                                    className="cursor-pointer p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
+                                    className="cursor-pointer
+                                     p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
                                     onClick={() => _changeTheme(theme.name)}
                                     style={{ backgroundColor: theme.color }}
                                 >
+                                    {/* eslint-disable-next-line eqeqeq */}
                                     {theme.name == layoutConfig.theme && (
                                         <i className="pi pi-check text-white"></i>
                                     )}
                                 </button>
                             </div>
-                        );
+                      )
                     })}
                 </div>
 
@@ -158,18 +160,18 @@ const AppConfig = (props: AppConfigProps) => {
                     ></Button>
                     <div className="flex gap-2 align-items-center">
                         {scales.map((s, i) => {
-                            return (
+                          return (
                                 <i
                                     key={i}
                                     className={classNames(
-                                        "pi pi-circle-fill text-300",
-                                        {
-                                            "text-primary-500":
-                                                s === layoutConfig.scale,
-                                        }
+                                      "pi pi-circle-fill text-300",
+                                      {
+                                        "text-primary-500":
+                                                s === layoutConfig.scale
+                                      }
                                     )}
                                 ></i>
-                            );
+                          )
                         })}
                     </div>
                     <Button
@@ -384,7 +386,7 @@ const AppConfig = (props: AppConfigProps) => {
                 )}
             </Sidebar>
         </>
-    );
-};
+  )
+}
 
-export default AppConfig;
+export default AppConfig

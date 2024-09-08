@@ -1,22 +1,23 @@
-import Link from "next/link";
-import { useContext } from "react";
-import AppMenu from "./AppMenu";
-import { LayoutContext } from "./context/layoutcontext";
-import { MenuProvider } from "./context/menucontext";
-import { LayoutState } from "../types/layout";
+/* eslint-disable max-len */
+import Link from "next/link"
+import { useContext } from "react"
+import AppMenu from "./AppMenu"
+import { LayoutContext } from "./context/layoutcontext"
+import { MenuProvider } from "./context/menucontext"
+import { LayoutState } from "../types/layout"
 
 const AppSidebar = () => {
-    const { setLayoutState } = useContext(LayoutContext);
-    const anchor = () => {
-        setLayoutState((prevLayoutState: LayoutState) => ({
-            ...prevLayoutState,
-            anchored: !prevLayoutState.anchored,
-        }));
-    };
-    return (
+  const { setLayoutState } = useContext(LayoutContext)
+  const anchor = () => {
+    setLayoutState((prevLayoutState: LayoutState) => ({
+      ...prevLayoutState,
+      anchored: !prevLayoutState.anchored
+    }))
+  }
+  return (
         <>
             <div className="sidebar-header">
-                <Link href="/" className="app-logo"  >
+                <Link href="/" className="app-logo" >
                         <svg
                             width="240"
                             height="41"
@@ -24,7 +25,7 @@ const AppSidebar = () => {
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                             className="app-logo-normal"
-                            style={{width : "196px", height: "48px"}}
+                            style={{ width: "196px", height: "48px" }}
                         >
                             <path d="M447.472 123.846C445.218 119.898 442.284 116.168 438.675 112.878C431.679 106.953 422.428 102.788 410.695 102.788C389.712 102.788 365.119 117.924 365.119 149.95C365.119 183.952 389.938 198.649 410.922 198.649C421.526 198.649 430.326 196.017 437.095 191.409C443.862 187.024 448.602 180.441 450.858 172.544H400.995V139.42H500.046C500.946 151.045 499.592 170.13 492.372 185.926C476.128 221.682 438.675 235.064 411.148 235.064C360.607 235.064 322.475 196.674 322.475 149.95C322.475 101.47 362.638 66.3729 411.824 66.3729C451.759 66.3729 486.055 92.4769 495.306 123.846H447.472Z"
                             fill="var(--logo-color)"/>
@@ -84,7 +85,7 @@ const AppSidebar = () => {
                 </MenuProvider>
             </div>
         </>
-    );
-};
+  )
+}
 
-export default AppSidebar;
+export default AppSidebar

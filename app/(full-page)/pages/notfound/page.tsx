@@ -1,8 +1,9 @@
-import type { Page } from "@/types";
-import Link from "next/link";
+/* eslint-disable max-len */
+import type { Page } from "@/types"
+import Link from "next/link"
 
 const NotFound: Page = () => {
-    return (
+  return (
         <>
             <svg
                 viewBox="0 0 960 540"
@@ -46,7 +47,7 @@ const NotFound: Page = () => {
                 </div>
             </div>
         </>
-    );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

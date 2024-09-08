@@ -1,6 +1,28 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "@next/next/no-img-element": "off"
-}
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "standard",
+        "next/core-web-vitals"
+    ],
+    "rules": {
+        "@next/next/no-img-element": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "max-len": [
+            "error",
+            {
+                "code": 140
+            }
+        ],
+        "quotes": [
+            2,
+            "double",
+            {
+                "avoidEscape": true
+            }
+        ]
+    }
 }
